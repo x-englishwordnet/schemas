@@ -1,2 +1,2 @@
 # schemas
-Schemas for English WordNet
+Schemas for X English WordNet
