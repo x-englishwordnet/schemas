@@ -3,13 +3,14 @@
 <!-- Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>. -->
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-	xmlns:dc='http://purl.org/dc/elements/1.1/'
+	xmlns:pwn='http://www.princeton.edu/wordnet/'
+	xmlns:ili='http://ili.org/ili/'
+	xmlns:meta='https://github.com/globalwordnet/schemas/meta/'
 	>
 
-	<xsd:import namespace='http://purl.org/dc/elements/1.1/'	schemaLocation='dc.xsd' />
-	<xsd:include												schemaLocation='pwn.xsd' />
-	<xsd:include												schemaLocation='ili.xsd' />
-	<xsd:include												schemaLocation='meta.xsd' />
+	<xsd:import namespace='http://www.princeton.edu/wordnet/' 				schemaLocation='pwn.xsd' />
+	<xsd:import namespace='http://ili.org/ili/'								schemaLocation='ili.xsd' />
+	<xsd:import namespace='https://github.com/globalwordnet/schemas/meta/'	schemaLocation='meta.xsd' />
 
 	<!-- E L E M E N T S -->
 
@@ -24,7 +25,6 @@
 	<xsd:element name='Lexicon'>
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref='SyntacticBehaviour' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='LexicalEntry' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='Synset' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
@@ -37,7 +37,7 @@
 			<xsd:attribute name='version' type='xsd:string' use='required' />
 			<xsd:attribute name='url' type='xsd:string' use='optional' />
 			<xsd:attribute name='citation' type='xsd:string' use='optional' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -47,10 +47,11 @@
 				<xsd:element ref='Lemma' minOccurs='1' maxOccurs='1' />
 				<xsd:element ref='Form' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='Sense' minOccurs='1' maxOccurs='unbounded' />
+				<xsd:element ref='SyntacticBehaviour' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
 
 			<xsd:attribute name='id' type='LexicalEntryIDType' use='required' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -87,18 +88,10 @@
 
 			<xsd:attribute name='id' type='SenseIDType' use='required' />
 			<xsd:attribute name='synset' type='LocalSynsetIDREFType' use='required' />
-			<xsd:attribute name='n' type='NType' use='required' />
-			<xsd:attribute name='senseidx' type='SenseIdxType' use='required' />
-			<xsd:attribute name='lexfile' type='LexFileType' use='optional' />
-			<xsd:attribute name='lexid' type='LexIdType' use='required' />
-			<xsd:attribute name='sensekey' type='SensekeyType' use='required' />
-			<xsd:attribute name='verbFrames' type='LocalSyntacticBehaviourIDREFSType' use='optional' />
-			<xsd:attribute name='verbTemplates' type='LocalSyntacticBehaviourIDREFSType' use='optional' />
-			<xsd:attribute name='adjPosition' type='AdjPositionType' use='optional' />
-			<xsd:attribute name='tagCnt' type='TagCntType' default='0' use='optional' />
+			<xsd:attribute name='n' type='NType' use='optional' />
 			<xsd:attribute name='lexicalized' type='xsd:boolean' default='true' use='optional' />
-			<xsd:attribute ref='dc:identifier' use='optional' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attribute ref='pwn:sensekey' use='optional' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -106,17 +99,17 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref='Definition' minOccurs='0' maxOccurs='1' />
-				<xsd:element ref='ILIDefinition' minOccurs='0' maxOccurs='1' />
+				<xsd:element ref='ili:Definition' minOccurs='0' maxOccurs='1' />
 				<xsd:element ref='SynsetRelation' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='Example' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
 
 			<xsd:attribute name='id' type='SynsetIDType' use='required' />
-			<xsd:attribute ref='ili' use='required' />
+			<xsd:attribute ref='ili:id' use='required' />
 			<xsd:attribute name='partOfSpeech' use='optional' type='PartOfSpeechType' />
-			<xsd:attribute ref='dc:subject' use='optional' />
+			<xsd:attribute name='lexfile' use='optional' type='LexFileType' />
 			<xsd:attribute name='lexicalized' type='xsd:boolean' default='true' use='optional' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -124,14 +117,14 @@
 		<xsd:complexType mixed='true'>
 			<xsd:attribute name='language' type='xsd:string' use='optional' />
 			<xsd:attribute name='sourceSense' type='SynsetIDREFType' use='optional' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
 	<xsd:element name='Example'>
 		<xsd:complexType mixed='true'>
 			<xsd:attribute name='language' type='xsd:string' use='optional' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -139,7 +132,7 @@
 		<xsd:complexType>
 			<xsd:attribute name='target' type='SynsetIDREFType' use='required' />
 			<xsd:attribute name='relType' type='SynsetRelationType' use='required' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -147,15 +140,16 @@
 		<xsd:complexType>
 			<xsd:attribute name='target' type='SenseIDREFType' use='required' />
 			<xsd:attribute name='relType' type='SenseRelationType' use='required' />
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
 	<xsd:element name='SyntacticBehaviour'>
 		<xsd:complexType>
-			<xsd:attribute name='id' type='SyntacticBehaviourIDType' use='required' />
-			<xsd:attribute name='subcategorizationFrame' type='xsd:string' use='optional' />
-			<xsd:attribute name='sentenceTemplate' type='xsd:string' use='optional' />
+			<xsd:attribute name='subcategorizationFrame' type='xsd:string' use='required' />
+			<xsd:attribute name='senses' type='SenseIDREFSType' use='optional' />
+			<!-- FAILS -->
+			<!-- <xsd:attribute name='senses' type='LocalSenseIDREFSType' use='optional' /> -->
 		</xsd:complexType>
 	</xsd:element>
 
@@ -167,7 +161,7 @@
 
 	<xsd:element name='Count'>
 		<xsd:complexType mixed='true'>
-			<xsd:attributeGroup ref='Meta' />
+			<xsd:attributeGroup ref='meta:Meta' />
 		</xsd:complexType>
 	</xsd:element>
 
