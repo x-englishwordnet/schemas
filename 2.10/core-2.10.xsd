@@ -25,6 +25,7 @@
 	<xsd:element name='Lexicon'>
 		<xsd:complexType>
 			<xsd:sequence>
+				<xsd:element ref='SyntacticBehaviour' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='LexicalEntry' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='Synset' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
@@ -47,7 +48,6 @@
 				<xsd:element ref='Lemma' minOccurs='1' maxOccurs='1' />
 				<xsd:element ref='Form' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='Sense' minOccurs='1' maxOccurs='unbounded' />
-				<xsd:element ref='SyntacticBehaviour' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
 
 			<xsd:attribute name='id' type='LexicalEntryIDType' use='required' />
@@ -88,7 +88,15 @@
 
 			<xsd:attribute name='id' type='SenseIDType' use='required' />
 			<xsd:attribute name='synset' type='LocalSynsetIDREFType' use='required' />
-			<xsd:attribute name='n' type='NType' use='optional' />
+			<xsd:attribute name='n' type='NType' use='required' />
+			<xsd:attribute name='senseidx' type='SenseIdxType' use='required' />
+			<xsd:attribute name='lexfile' type='LexFileType' use='optional' />
+			<xsd:attribute name='lexid' type='LexIdType' use='required' />
+			<xsd:attribute name='sensekey' type='SensekeyType' use='required' />
+			<xsd:attribute name='verbFrames' type='LocalSyntacticBehaviourIDREFSType' use='optional' />
+			<xsd:attribute name='verbTemplates' type='LocalSyntacticBehaviourIDREFSType' use='optional' />
+			<xsd:attribute name='adjPosition' type='AdjPositionType' use='optional' />
+			<xsd:attribute name='tagCnt' type='TagCntType' default='0' use='optional' />
 			<xsd:attribute name='lexicalized' type='xsd:boolean' default='true' use='optional' />
 			<xsd:attribute ref='pwn:sensekey' use='optional' />
 			<xsd:attributeGroup ref='meta:Meta' />
@@ -146,8 +154,9 @@
 
 	<xsd:element name='SyntacticBehaviour'>
 		<xsd:complexType>
-			<xsd:attribute name='subcategorizationFrame' type='xsd:string' use='required' />
-			<xsd:attribute name='senses' type='LocalSenseIDREFSType' use='optional' />
+			<xsd:attribute name='id' type='SyntacticBehaviourIDType' use='required' />
+			<xsd:attribute name='subcategorizationFrame' type='xsd:string' use='optional' />
+			<xsd:attribute name='sentenceTemplate' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
