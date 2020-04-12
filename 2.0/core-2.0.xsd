@@ -2,7 +2,7 @@
 
 <!-- Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>. -->
 
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:pwn='http://www.princeton.edu/wordnet/'
 	xmlns:ili='http://ili.org/ili/'
 	xmlns:meta='https://github.com/globalwordnet/schemas/meta/'
@@ -89,6 +89,7 @@
 			<xsd:attribute name='id' type='SenseIDType' use='required' />
 			<xsd:attribute name='synset' type='LocalSynsetIDREFType' use='required' />
 			<xsd:attribute name='n' type='NType' use='optional' />
+			<xsd:attribute name='adjposition' type='AdjPositionType' use='optional' />
 			<xsd:attribute name='lexicalized' type='xsd:boolean' default='true' use='optional' />
 			<xsd:attribute ref='pwn:sensekey' use='optional' />
 			<xsd:attributeGroup ref='meta:Meta' />
@@ -98,7 +99,7 @@
 	<xsd:element name='Synset'>
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref='Definition' minOccurs='0' maxOccurs='1' />
+				<xsd:element ref='Definition' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='ili:Definition' minOccurs='0' maxOccurs='1' />
 				<xsd:element ref='SynsetRelation' minOccurs='0' maxOccurs='unbounded' />
 				<xsd:element ref='Example' minOccurs='0' maxOccurs='unbounded' />
