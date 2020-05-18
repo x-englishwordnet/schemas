@@ -2,7 +2,7 @@
 <img width="256" height="256" src="images/xewn2.png">
 </p>
 
-# Xtended English Wordnet Schemas
+# Xtended English WordNet Schemas
 
 The different folders (1.0, 2.0, 1.10, ...) correspond to different validation levels that may apply to different sets of data.
 
