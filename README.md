@@ -2,9 +2,7 @@
 <img width="256" height="256" src="images/xewn2.png">
 </p>
 
-# Extended English Wordnet Schemas
-
-New:
+# Xtended English Wordnet Schemas
 
 The different folders (1.0, 2.0, 1.10, ...) correspond to different validation levels that may apply to different sets of data.
 
@@ -14,7 +12,7 @@ Downloadable [here](https://x-englishwordnet.github.io/schemas/).
 
 Design is modular so a full schema involves several files.
 
-The main entry points are:
+The main entry points (to be included as headers or referenced in validation) are:
 
 - https://x-englishwordnet.github.io/schemas/1.1/EWN-LMF-1.1.xsd
 - https://x-englishwordnet.github.io/schemas/1.1/EWN-LMF-1.1-relax_idrefs.xsd
