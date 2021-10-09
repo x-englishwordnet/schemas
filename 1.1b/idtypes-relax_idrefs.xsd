@@ -4,9 +4,9 @@
 
 <!DOCTYPE xsd:schema
 [
-<!ENTITY lexentryid ".*\-[a-zA-Z0-9_\.\-]*-[nvars]">
+<!ENTITY lexentryid ".*\-[a-zA-Z0-9_\.\-]*-[nvars](\-[0-9])?">
 <!ENTITY synsetid ".*\-\d{8}\-[nvars]">
-<!ENTITY senseid ".*\-.*\-[nvars]\-\d{8}\-\d{2}">
+<!ENTITY senseid ".*">
 <!ENTITY syntacticbehaviourid ".*">
 ]>
 <xsd:schema	xmlns:xsd="http://www.w3.org/2001/XMLSchema">

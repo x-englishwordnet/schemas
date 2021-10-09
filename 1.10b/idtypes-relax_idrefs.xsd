@@ -4,10 +4,9 @@
 
 <!DOCTYPE xsd:schema
 [
-<!ENTITY lexentryid ".*\-[a-zA-Z0-9_\.\-]*-[nvars](\-[0-9])?">
+<!ENTITY lexentryid ".*\-[a-zA-Z0-9_\.\-]*-[nvars]">
 <!ENTITY synsetid ".*\-\d{8}\-[nvars]">
-<!ENTITY senseid ".*">
-<!ENTITY syntacticbehaviourid ".*">
+<!ENTITY senseid ".*\-.*">
 ]>
 <xsd:schema	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
@@ -40,20 +39,13 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 
-	<!-- syntactic behaviour -->
-
-	<xsd:simpleType name='SyntacticBehaviourIDType'>
-		<xsd:restriction base='xsd:ID'>
-			<xsd:pattern value='&syntacticbehaviourid;' />
-		</xsd:restriction>
-	</xsd:simpleType>
-
 	<!-- I D R E F -->
 
 	<!-- synset -->
 
 	<xsd:simpleType name='SynsetIDREFType'>
-		<xsd:restriction base='xsd:IDREF'>
+		<!-- relax 'xsd:IDREF' -->
+		<xsd:restriction base='xsd:NCName'>
 			<xsd:pattern value='&synsetid;' />
 		</xsd:restriction>
 	</xsd:simpleType>
@@ -71,7 +63,8 @@
 			<xsd:simpleType>
 				<xsd:list>
 					<xsd:simpleType>
-						<xsd:restriction base='xsd:IDREF'>
+						<!-- relax 'xsd:IDREF' -->
+						<xsd:restriction base='xsd:NCName'>
 							<xsd:pattern value='&synsetid;' />
 						</xsd:restriction>
 					</xsd:simpleType>
@@ -99,7 +92,8 @@
 	<!-- sense -->
 
 	<xsd:simpleType name='SenseIDREFType'>
-		<xsd:restriction base='xsd:IDREF'>
+		<!-- relax 'xsd:IDREF' -->
+		<xsd:restriction base='xsd:NCName'>
 			<xsd:pattern value='&senseid;' />
 		</xsd:restriction>
 	</xsd:simpleType>
@@ -117,7 +111,8 @@
 			<xsd:simpleType>
 				<xsd:list>
 					<xsd:simpleType>
-						<xsd:restriction base='xsd:IDREF'>
+						<!-- relax 'xsd:IDREF' -->
+						<xsd:restriction base='xsd:NCName'>
 							<xsd:pattern value='&senseid;' />
 						</xsd:restriction>
 					</xsd:simpleType>
@@ -134,38 +129,6 @@
 					<xsd:simpleType>
 						<xsd:restriction base='xsd:IDREF'>
 							<xsd:pattern value='&senseid;' />
-						</xsd:restriction>
-					</xsd:simpleType>
-				</xsd:list>
-			</xsd:simpleType>
-			<xsd:minLength value='1' />
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<!-- syntactic behaviours -->
-
-	<xsd:simpleType name='SyntacticBehaviourIDREFSType'>
-		<xsd:restriction>
-			<xsd:simpleType>
-				<xsd:list>
-					<xsd:simpleType>
-						<xsd:restriction base='xsd:IDREF'>
-							<xsd:pattern value='&syntacticbehaviourid;' />
-						</xsd:restriction>
-					</xsd:simpleType>
-				</xsd:list>
-			</xsd:simpleType>
-			<xsd:minLength value='1' />
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<xsd:simpleType name='LocalSyntacticBehaviourIDREFSType'>
-		<xsd:restriction>
-			<xsd:simpleType>
-				<xsd:list>
-					<xsd:simpleType>
-						<xsd:restriction base='xsd:IDREF'>
-							<xsd:pattern value='&syntacticbehaviourid;' />
 						</xsd:restriction>
 					</xsd:simpleType>
 				</xsd:list>
